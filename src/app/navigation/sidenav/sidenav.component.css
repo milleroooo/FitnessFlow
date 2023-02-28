@@ -1,0 +1,26 @@
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+.navigation-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.navCaption{
+  display: inline-flex;
+  vertical-align: bottom;
+  padding-left: 2px;
+}
+.navIcon{
+  display: inline-flex;
+  vertical-align: bottom;
+  padding-right: 3px;
+}

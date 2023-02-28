@@ -1,0 +1,25 @@
+.example-header-image {
+  background-image: url('/src/assets/images/icons8-man-running-48.png');
+  background-size: cover;
+  height: 60px;
+  width: 60px;
+}
+.new-training{
+  padding: 20px;
+}
+.easy{
+  color:#2fa363 ;
+}
+.medium{
+  color:#FF6E40 ;
+}
+.advanced{
+  color:#f44393 ;
+}
+.hard{
+  color:#df2727 ;
+}
+.activity-image{
+  height: 80px;
+  width: 80px;
+}

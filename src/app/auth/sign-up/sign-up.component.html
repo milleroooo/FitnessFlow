@@ -1,0 +1,61 @@
+<section class="signup">
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px"
+    [formGroup]="signUpForm"
+    (ngSubmit)="onSubmit()">
+
+    <!--Email input-->
+    <mat-form-field >
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        placeholder="example@example.com"
+        ngModel
+        name="Email"
+        formControlName="email"
+        required />
+        <mat-hint>Please enter a valid email.</mat-hint>
+        <mat-error>Invalid or missing email.</mat-error>
+    </mat-form-field>
+
+    <!--Password input-->
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        name="Password"
+        formControlName="password"
+        required
+      />
+        <mat-hint>Please enter a valid password.</mat-hint>
+        <mat-error>Missing password.</mat-error>
+    </mat-form-field>
+
+     <!--Datepicker-->
+    <mat-form-field>
+      <input matInput
+       [matDatepicker]="picker"
+       placeholder="Birthdate"
+       [max]="maxDate"
+       name="Birthday"
+       formControlName="birthdate"
+       required
+        />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-error>Invalid or missing birtdate.</mat-error>
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+     <!--Checkbox-->
+      <mat-label>Already have an account? <a href="login">Log in</a></mat-label>
+      <mat-checkbox labelPosition="before" formControlName="agree" name="Agree" required>Agree to terms and conditions</mat-checkbox>
+
+     <!--Submit button-->
+    <button mat-raised-button color="accent" type="submit" [disabled]="signUpForm.invalid">Sign up</button>
+    <img src="../../assets/images/signUpImg.png" fxFlexAlign="center" class="signup-image">
+  </form>
+</section>

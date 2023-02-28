@@ -1,0 +1,52 @@
+<div class="new-training" fxLayout="column" fxLayout.gt-xs="column" fxLayoutGap="10px" fxLayoutGap.gt-xs="15px" fxLayoutAlign="center center">
+  <h1>Time to start a workout!</h1>
+  <section class="card" *ngFor="let exercise of exerciseList">
+    <mat-card fxFlex.xs="300px" fxFlex="400px" class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{exercise.name}}</mat-card-title>
+          <mat-card-subtitle>Difficulty level: <span [ngClass]="{'easy': exercise.difficulty == 'easy', 'medium': exercise.difficulty ==  'medium','advanced': exercise.difficulty == 'advanced', 'hard': exercise.difficulty == 'hard'}">{{exercise.difficulty}}</span></mat-card-subtitle>
+          <img mat-card-md-image src="{{exercise.image}}" class="activity-image">
+        </mat-card-title-group>
+      </mat-card-header>
+    </mat-card>
+  </section>
+
+<form (ngSubmit)="onStartTraining(form)" #form="ngForm">
+<mat-card fxFlex.gt-xs="300px" fxFlex.xs="300px" class="example-card2">
+  <mat-card-content fxLayoutAlign="center">
+    <mat-form-field>
+      <mat-select placeholder="Select Exercise" ngModel name="exercise" required>
+        <mat-option *ngFor="let exercise of exerciseList" [value]="exercise.id">
+          {{exercise.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions fxFlexAlign="center">
+    <button type="submit" mat-raised-button>START</button>
+  </mat-card-actions>
+</mat-card>
+</form>
+</div>
+<!-- <section class="new-training" fxLayout fxLayoutAlign="center">
+  <form #form="ngForm">
+    <mat-card fxFlex.xs="100%" fxFlex="400px" name="exercise">
+      <mat-card-content fxLayout fxLayoutAlign="center">
+        <h1>Time to start a workout!</h1>
+      </mat-card-content>
+      <mat-card class="example-card" *ngFor="let exercise of exerciseList" [id]="exercise.id">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{exercise.name}}</mat-card-title>
+            <mat-card-subtitle>Difficulty level: <span [ngClass]="{'easy': exercise.difficulty == 'easy', 'medium': exercise.difficulty ==  'medium','advanced': exercise.difficulty == 'advanced', 'hard': exercise.difficulty == 'hard'}">{{exercise.difficulty}}</span></mat-card-subtitle>
+            <div mat-card-avatar class="example-header-image"><img src="{{exercise.image}}" class="activity-image" alt=""></div>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-actions fxLayoutAlign="center">
+          <button type="submit" mat-button color="accent" (click)="onStartTraining(form)">START</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-card>
+  </form>
+</section> -->

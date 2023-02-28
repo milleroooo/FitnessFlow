@@ -1,0 +1,38 @@
+<section class="login">
+  <form
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="10px"
+  [formGroup]="loginForm"
+  (ngSubmit)="onSubmit()">
+
+  <!--Email input-->
+  <mat-form-field>
+    <input
+        matInput
+        placeholder="Email"
+        ngModel
+        formControlName="email"
+        required />
+        <mat-hint>Please enter a valid email.</mat-hint>
+        <mat-error>Invalid or missing email.</mat-error>
+  </mat-form-field>
+
+    <!--Password input-->
+  <mat-form-field>
+    <input
+        matInput
+        placeholder="Password"
+        ngModel
+        formControlName="password"
+        required />
+        <mat-hint>Please enter your password.</mat-hint>
+        <mat-error>Missing password.</mat-error>
+  </mat-form-field>
+
+   <!--Submit button-->
+   <mat-label>Don't have an account? <a href="signup">Sign up</a></mat-label>
+  <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid">Login</button>
+  <img src="../../assets/images/loginImg.png" fxFlexAlign="center" class="login-image">
+</form>
+</section>

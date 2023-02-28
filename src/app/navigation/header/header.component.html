@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onSidenavToggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+                      <!--logo-->
+  <div fxLayoutGap="10px" mat-card-avatar class="example-header-image"><img src="../../assets/images/runner.png" class="logo" alt=""></div>
+  <section class="title">
+    <a routerLink="/welcome">FitnessFlow</a>
+  </section>
+                    <!--navigation-->
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li *ngIf="!isAuth"><a routerLink="/signup">Signup</a></li>
+      <li *ngIf="!isAuth"><a routerLink="/login">Login</a></li>
+      <li *ngIf=" isAuth"><a routerLink="/training">Training</a></li>
+      <li><a routerLink="/logout" (click)="onLogout()">Logout</a></li>
+    </ul>
+  </div>
+</mat-toolbar>

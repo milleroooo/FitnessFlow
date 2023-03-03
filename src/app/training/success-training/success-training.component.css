@@ -1,0 +1,11 @@
+.success-training-card{
+  padding-top: 80px;
+}
+.success-image{
+  height: 304px;
+  width: 400px;
+}
+.success-icon-image {
+  background-image: url('https://icons-for-free.com/iconfiles/png/512/complete+done+green+success+valid+icon-1320183462969251652.png');
+  background-size: cover;
+}

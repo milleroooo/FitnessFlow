@@ -47,7 +47,7 @@ export class AuthService {
 
   //function that returns new user object
   getUser(){
-    return {... this.user}
+    return {...this.user}
   }
 
   //function that checks if user is authenticated

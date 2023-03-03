@@ -18,8 +18,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
-import { AuthService } from './auth/services/auth.service';
+import { AuthService } from './services/auth.service';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { SuccessTrainingComponent } from './training/success-training/success-training.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     HeaderComponent,
     SidenavComponent,
     StopTrainingComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    SuccessTrainingComponent
   ],
   imports: [
     BrowserModule,

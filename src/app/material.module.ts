@@ -19,6 +19,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [MatButtonModule,
@@ -40,7 +41,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
             MatRippleModule,
             MatTableModule,
             MatSortModule,
-            MatPaginatorModule
+            MatPaginatorModule,
+            MatProgressBarModule
           ],
   exports: [MatButtonModule,
             MatIconModule,
@@ -61,7 +63,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
             MatRippleModule,
             MatTableModule,
             MatSortModule,
-            MatPaginatorModule
+            MatPaginatorModule,
+            MatProgressBarModule
           ],
 })
 export class MaterialModule {}

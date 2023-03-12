@@ -1,0 +1,25 @@
+.card{
+  padding:30px;
+}
+.subtitles{
+  padding-top: 100px;
+}
+.footer{
+  padding-top: 40px;
+}
+.title-group{
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+  width: 100%;
+  margin-left: 30%;
+}
+.title{
+  font-size: 30px;
+}
+
+.activity-image{
+  height: 150px;
+}
+
+

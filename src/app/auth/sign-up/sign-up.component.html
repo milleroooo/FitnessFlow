@@ -56,7 +56,9 @@
       <mat-checkbox labelPosition="before" formControlName="agree" name="Agree" required>Agree to terms and conditions</mat-checkbox>
 
      <!--Submit button-->
-    <button mat-raised-button color="accent" type="submit" [disabled]="signUpForm.invalid">Sign up</button>
+
+    <button *ngIf="!isLoading" mat-raised-button color="accent" type="submit" [disabled]="signUpForm.invalid">Sign up</button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
     <img src="../../assets/images/signUpImg.png" fxFlexAlign="center" class="signup-image">
   </form>
 </section>

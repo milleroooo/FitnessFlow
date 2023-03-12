@@ -7,5 +7,8 @@ export interface Exercise {
   calories: number;
   date?: Date;
   state?: 'completed' | 'cancelled' | null;
-
+  strength?: number;
+  flexibility?: number;
+  agility?: number;
+  connection?: number;
 }

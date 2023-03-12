@@ -1,3 +1,9 @@
 .filter-table{
   padding-top: 20px;
 }
+.delete{
+  color:#e82142;
+}
+.info{
+  color: #3B71CA;
+}

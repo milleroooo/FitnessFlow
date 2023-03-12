@@ -2,39 +2,68 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Exercise } from '../modal/exercise';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore'
+import { map } from 'rxjs';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainingService {
   exerciseChanged = new Subject<Exercise>();
-
-  constructor(private router: Router) { }
-
-  availableExercises : Exercise[] = [
-    { id: 'crunches', name: 'Crunches', duration: 3, calories: 8, difficulty:'easy', image: '../../assets/images/Activity1.png' },
-    { id: 'touch-toes', name: 'Touch Toes', duration: 100, calories: 15, difficulty:'medium', image: '../../assets/images/Activity2.png' },
-    { id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 18, difficulty:'advanced', image: '../../assets/images/Activity3.png' },
-    { id: 'burpees', name: 'Burpees', duration: 140, calories: 8, difficulty:'hard', image: '../../assets/images/Activity4.png' }
-  ];
+  exercisesChanged = new Subject<Exercise[]>();
+  finishedExercisesChanged = new Subject<Exercise[]>();
+  availableExercises: Exercise[] = []
   runningExercise!: Exercise;
-  exerciseList: Exercise[] = [];
+  finishedExercises: Exercise[] = [];
 
-  startExercise(selectedId: string) {
-    this.runningExercise = this.availableExercises.find(exercise => exercise.id === selectedId)!;
-    this.exerciseChanged.next({...this.runningExercise});
+  constructor(private router: Router, private afs: AngularFirestore, private snackBar: SnackbarService) { }
+
+  //Function that returns Exercise interface from Firestore database
+  getAvailableExercises() {
+    this.afs.collection('availableExercises').snapshotChanges()
+      .pipe(
+        map(docArray => docArray.map(doc => {
+          const data: any = doc.payload.doc.data();
+          return {
+            id: doc.payload.doc.id,
+            name: data.name,
+            duration: data.duration,
+            calories: data.calories,
+            image: data.image,
+            difficulty: data.difficulty
+          };
+        }))
+      ).subscribe((exercises: Exercise[]) => {
+      this.availableExercises = exercises;
+      this.exercisesChanged.next([...this.availableExercises]);
+     });
   }
 
+  //Function that starts Exercise (selected by specified Id)
+  startExercise(selectedId: string) {
+    this.runningExercise = this.availableExercises.find(
+      exercise => exercise.id === selectedId)!;
+    this.exerciseChanged.next({...this.runningExercise});
+    this.snackBar.info('Training started');
+  }
+
+  //Function that pushes exercises, which are completed to exerciseList and changes its state to 'completed'
   completedExercise(){
-    this.exerciseList.push({...this.runningExercise, date: new Date(),
+    this.addDataToDatabase({
+      ...this.runningExercise,
+      date: new Date(),
       state: 'completed'});
     this.runningExercise = null!;
     this.exerciseChanged.next(null!);
     this.router.navigate(['/success']);
-  }
+}
 
+  //Function that pushes exercises, which are cancelled to exerciseList and changes its state to 'cancelled'
   canceledExercise(progress: number){
-    this.exerciseList.push({...this.runningExercise, date: new Date(),
+    this.addDataToDatabase({
+    ...this.runningExercise,
+     date: new Date(),
      state: 'cancelled',
      duration: this.runningExercise.duration * (progress / 100),
      calories:this.runningExercise.calories  * (progress / 100)
@@ -47,8 +76,23 @@ export class TrainingService {
     return {... this.runningExercise};
   }
 
-  //Function that returns copy of a Exercise interface
-  getCompletedOrCancelledExercises(){
-    return this.exerciseList.slice();
+  getExerciseById(id : any) {
+    return this.afs.doc("/availableExercises/"+id).valueChanges();
   }
+
+  //Function that pushes exercises regardless of the state of exercise
+  getCompletedOrCancelledExercises(){
+    this.afs
+    .collection('finishedExercises')
+    .valueChanges()
+    .subscribe((exercises: unknown[]): void => {
+      this.finishedExercisesChanged.next(exercises as Exercise[]);
+    });
+  }
+
+  //Function that add exercise to new collection in Firebase
+  private addDataToDatabase(exercise : Exercise){
+   return this.afs.collection('/finishedExercises').add(exercise);
+  }
+
 }

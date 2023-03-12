@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/fitness-flow",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

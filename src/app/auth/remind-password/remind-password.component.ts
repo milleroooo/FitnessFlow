@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UiService } from 'src/app/shared/ui.service';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UiService } from 'src/app/shared/ui.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-remind-password',
+  templateUrl: './remind-password.component.html',
+  styleUrls: ['./remind-password.component.css'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
-  loginForm!: FormGroup;
+export class RemindPasswordComponent implements OnInit, OnDestroy {
+  remindForm!: FormGroup;
   isLoading = false;
   loadingSubscription!: Subscription;
 
@@ -22,23 +22,18 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.isLoading = isLoading;
       }
     );
-    this.loginForm = new FormGroup({
+    this.remindForm = new FormGroup({
       email: new FormControl('', {
         validators: [Validators.required, Validators.email],
       }),
-      password: new FormControl('', { validators: [Validators.required] }),
     });
   }
   onSubmit() {
-    this.authService.login({
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password,
+    this.authService.remind({
+      email: this.remindForm.value.email,
+      password: this.remindForm.value.password,
     });
   }
-  OnLogInWithGoogle() {
-    this.authService.googleLogIn();
-  }
-
   ngOnDestroy(): void {
     if (this.loadingSubscription) {
       this.loadingSubscription.unsubscribe();

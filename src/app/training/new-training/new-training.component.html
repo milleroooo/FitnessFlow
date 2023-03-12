@@ -1,7 +1,7 @@
 <div class="new-training" fxLayout="column" fxLayout.gt-xs="column" fxLayoutGap="10px" fxLayoutGap.gt-xs="15px" fxLayoutAlign="center center">
           <h1>Time to start a workout!</h1>
   <section class="card" *ngFor="let exercise of exerciseList">
-    <mat-card fxFlex.xs="300px" fxFlex="400px" class="new-training-card">
+    <mat-card fxFlex.xs="300px" fxFlex="400px" class="new-training-card" [routerLink]="['/view', exercise.id]">
       <mat-card-header>
         <mat-card-title-group>
           <mat-card-title>{{exercise.name}}</mat-card-title>
@@ -15,13 +15,14 @@
   <form (ngSubmit)="onStartTraining(form)" #form="ngForm">
     <mat-card fxFlex.gt-xs="300px" fxFlex.xs="300px" class="training-choice-card">
       <mat-card-content fxLayoutAlign="center">
-        <mat-form-field>
+        <mat-form-field *ngIf="!isLoading">
           <mat-select placeholder="Select Exercise" ngModel name="exercise" required>
             <mat-option *ngFor="let exercise of exerciseList" [value]="exercise.id">
               {{exercise.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
       </mat-card-content>
       <mat-card-actions fxFlexAlign="center">
         <button type="submit" mat-raised-button color="accent">START</button>

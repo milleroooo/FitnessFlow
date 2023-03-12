@@ -1,6 +1,6 @@
 import { Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { SnackbarService } from "src/app/snackbar/snackbar.service";
+import { SnackbarService } from "src/app/services/snackbar.service";
 
 @Component({
   selector: 'app-stop-training',

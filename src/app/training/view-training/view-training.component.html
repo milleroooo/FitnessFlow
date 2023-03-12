@@ -1,0 +1,32 @@
+<div class="view-training" fxLayout="column" fxLayout.gt-xs="column" fxLayoutGap.gt-xs="20px" fxLayoutAlign="center center">
+  <section class="card">
+    <mat-card fxFlex.xs="350px" fxFlex.gt-xs="600px" fxFlex="400px" class="example-card">
+      <mat-card-header>
+        <mat-card-title-group class="title-group">
+          <mat-card-title class="title" >{{exerciseObj.name}}</mat-card-title>
+          <img class="activity-image" mat-card-image src="{{exerciseObj.image}}">
+        </mat-card-title-group>
+      </mat-card-header>
+          <mat-card-content class="content">
+          <mat-card-title class="subtitles">Strength
+            <mat-progress-bar mode="determinate" value="{{exerciseObj.strength}}"></mat-progress-bar>
+          </mat-card-title>
+          <mat-card-title>Flexibility
+            <mat-progress-bar mode="determinate" class="flexibility" value="{{exerciseObj.flexibility}}"></mat-progress-bar>
+          </mat-card-title>
+          <mat-card-title>Agility
+            <mat-progress-bar mode="determinate" class="agility" value="{{exerciseObj.agility}}"></mat-progress-bar>
+          </mat-card-title>
+          <mat-card-title>Connection
+            <mat-progress-bar mode="determinate" class="strength" value="{{exerciseObj.connection}}"></mat-progress-bar>
+          </mat-card-title>
+        </mat-card-content>
+        <mat-card-footer class="footer">
+          <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
+  </section>
+  <button mat-fab color="accent" class="btn" routerLink="/training">
+    <mat-icon>sports_gymnastics</mat-icon>
+  </button>
+</div>

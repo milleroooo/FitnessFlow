@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fitnessflow-71b34": {
+      "hosting": {
+        "FitnessFlow": [
+          "fitnessflow-71b34"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fitnessflow-71b34"
+  }
+}

@@ -33,7 +33,27 @@
 
    <!--Submit button-->
    <mat-label>Don't have an account? <a href="signup">Sign up</a></mat-label>
-  <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid">Login</button>
-  <img src="../../assets/images/loginImg.png" fxFlexAlign="center" class="login-image">
+   <mat-label>Forgot password? <a href="remind">Remind me</a></mat-label>
+   <button *ngIf="!isLoading" mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid">Login</button>
+   <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+   <!--Login icons-->
+  <div class="loginIcons" fxLayout="row">
+  <button mat-button style="padding: 0.5rem;" (click)="OnLogInWithGoogle()">
+    <img src="https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg" class="loginIcon">
+  </button>
+  <button mat-button style="padding: 0.5rem;">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/512px-Facebook_f_logo_%282021%29.svg.png?20210818083032" class="loginIcon">
+  </button>
+  <button mat-button style="padding: 0.5rem;">
+    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="loginIcon">
+  </button>
+  <button mat-button style="padding: 0.5rem;">
+    <img src="https://static-00.iconduck.com/assets.00/linkedin-icon-512x512-vkm0drb1.png" class="loginIcon">
+  </button>
+  </div>
+
+    <!--Main image-->
+    <img src="../../assets/images/loginImg.png" fxFlexAlign="center" class="login-image">
 </form>
 </section>
